@@ -1,3 +1,6 @@
+process.on("uncaughtException", (err) => {
+  console.log("ERROR:", err);
+});
 const express = require("express");
 const app = express();
 
@@ -18,6 +21,8 @@ app.get("/", (req, res) => {
   res.send("Server Running ✅");
 });
 
-app.listen(process.env.PORT || 3000, "0.0.0.0", () => {
-  console.log("Server running on port " + (process.env.PORT || 3000));
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, "0.0.0.0", () => {
+  console.log("Server running on port " + PORT);
 });
