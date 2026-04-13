@@ -3,26 +3,25 @@ const app = express();
 
 app.use(express.json());
 
-let orders = [];
-
-// Health check (VERY IMPORTANT)
+// Health route (Railway के लिए MUST)
 app.get("/", (req, res) => {
-  res.status(200).send("OK");
+  res.send("OK");
 });
 
-// Save order
-app.post("/save", (req, res) => {
-  orders.push(req.body);
-  res.json({ message: "Saved", data: req.body });
+// Test route
+app.get("/test", (req, res) => {
+  res.json({ status: "working" });
 });
 
-// Get orders
-app.get("/orders", (req, res) => {
-  res.json(orders);
+// Error handling (IMPORTANT)
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).send("Server Error");
 });
 
 const PORT = process.env.PORT || 3000;
 
+// IMPORTANT: 0.0.0.0 binding
 app.listen(PORT, "0.0.0.0", () => {
   console.log("Server running on port " + PORT);
 });
