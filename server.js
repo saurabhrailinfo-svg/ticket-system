@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 // ✅ MongoDB Connection URL (अपना paste करो)
-const MONGO_URL = "mongodb+srv://kumarskc2025_db_user:PASSWORD@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority";
+const MONGO_URL = "mongodb+srv://kumarskc2025_db_user:Saurabh#321@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority";
 
 const client = new MongoClient(MONGO_URL);
 
