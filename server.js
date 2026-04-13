@@ -3,25 +3,19 @@ const app = express();
 
 app.use(express.json());
 
-// Health route (Railway के लिए MUST)
+// MUST: fast response for Railway
 app.get("/", (req, res) => {
-  res.send("OK");
+  res.status(200).send("OK");
 });
 
-// Test route
-app.get("/test", (req, res) => {
-  res.json({ status: "working" });
-});
-
-// Error handling (IMPORTANT)
-app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(500).send("Server Error");
+// test route
+app.get("/ping", (req, res) => {
+  res.json({ message: "pong" });
 });
 
 const PORT = process.env.PORT || 3000;
 
-// IMPORTANT: 0.0.0.0 binding
-app.listen(PORT, "0.0.0.0", () => {
+// CRITICAL FIX
+app.listen(PORT, () => {
   console.log("Server running on port " + PORT);
 });
