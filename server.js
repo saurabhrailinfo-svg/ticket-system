@@ -18,4 +18,4 @@ app.get("/", (req, res) => {
   res.send("Server Running ✅");
 });
 
-app.listen(3000, () => console.log("Server running"));
+app.listen(process.env.PORT || 3000)
